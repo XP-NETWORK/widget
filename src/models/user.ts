@@ -1,94 +1,55 @@
 import { model, Schema } from 'mongoose'
 // import { CustomDocumentBuild } from '../../utils/mongodb/documentDefaults'
 import { CustomDocumentBuild } from '../mongodb/documentDefaults';
-import { INFTDocument, INFTModel, INFT } from './interfaces/user'
+import { IUSERDocument, IUSERModel, IUSER } from './interfaces/user'
 //import { sendNewNFTCachedMessage, sendNFTexistsMessage } from '../helpers/telegram'
 
-export const docNFT = {
-    chainId: { type: String },
-    tokenId: { type: String },
-    owner: { type: String },
-    uri: { type: String },
-    contract: { type: String },
-    contractType: { type: String },
-    collectionIdent: { type: String },
-    metaData: { type: Schema.Types.Mixed },
-    misc: { type: Schema.Types.Mixed }
+export const docUSER = {
+    signature: { type: String },
+    message: { type: String }
 }
 
-export const schema = CustomDocumentBuild(docNFT)
-schema.index({ uri: 1 })
+export const schema = CustomDocumentBuild(docUSER)
+//schema.index({ uri: 1 })
 /**
  * MODEL NFT, used for interactions with MongoDB
  */
 
-schema.statics.getByURI = async function (
-    uri: string
-) {
-    // return await this.findOne({ "metaData.image": uri })
-    // return await query.exec().then((r: INFTDocument) => r ? r : undefined)
-    return await this.findOne({ uri: uri }).exec();
-}
 
-schema.statics.getByData = async function (contract: string, chainId: string, tokenId: string) {
-    return await this.findOne({ contract: contract, chainId: chainId, tokenId: tokenId })
-    //return await query.exec().then((r: INFTDocument) => r ? r : undefined)
-}
-
-
-schema.statics.addToCache = async function (obj: any, res: any, mediasAdded: number) {
-    try {
-
-
-        let NFT = await this.findOne({ contract: obj.contract, tokenId: obj.tokenId })
-        if (NFT !== null) {
-            //sendNFTexistsMessage(NFT._id)
-            res.send(`such NFT already exists in cache with id: ${NFT._id}`)
-            return
-        } else {
-            res.send(obj)
-            new Promise((reslove, rejects) => {
-                try {
-                    reslove(this.create(obj));
-                } catch {
-                    rejects("error")
-                }
-            })
+schema.statics.getUser = async function (signature: string, message: string) {
+    return await new Promise(async (resolve: any, reject: any) => {
+        const result = await this.findOne({ signature: signature, message: message })
+        if (result)
+        {
+            resolve("that user already exist")
         }
-
-
-        //FIX THAT MESSAGE VVVVV
-
-        //sendNewNFTCachedMessage(obj.chainId, obj.tokenId, obj.contract, obj.metaData.media, obj.metaData.format)
-        return
-    } catch (error) {
-        res.send(error)
-    }
-
+        else{
+            resolve("no user with that signature and message combination")
+        }
+    })
 }
 
 
-schema.statics.addToCacheFile = async function (obj: any, res: any) {
-    let NFT = await this.findOne({ uri: obj.uri })
-    if (NFT !== null) {
-        //sendNFTexistsMessage(NFT._id)
-        res.send(obj.metaData)
-        return
-    } else {
-        res.send(obj.metaData)
-        new Promise((reslove, rejects) => {
-            try {
-                reslove(this.create(obj.metaData));
-            } catch {
-                rejects("error")
-            }
-        })
-    }
+schema.statics.addUser = async function (signature: String, message: String) {
+    return await new Promise(async (resolve: any, reject: any) => {
+        let user = await this.findOne({ signature: signature, message: message })
+        if (user !== null) {
+
+            resolve(user)
+        }
+        else {
+
+            let newUser = await this.create({ signature: signature, message: message })
+            resolve(newUser)
+        }
+    })
 }
 
-const NFT: INFTModel = model<INFTDocument, INFTModel>('nfts', schema)
-export default NFT
+
+
+const USER: IUSERModel = model<IUSERDocument, IUSERModel>('users', schema)
+export default USER
 export {
-    INFT,
-    INFTModel,
+    IUSER,
+    IUSERModel,
 }
