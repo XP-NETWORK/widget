@@ -8,6 +8,8 @@ config()
 const port = process.env.PORT || 3030;
 //const URL: string = mongoURL || ""
 
+const URL:string = process.env.URL || ""
+
 const options: any = {
     //useCreateIndex: true,
     useNewUrlParser: true,
@@ -53,7 +55,7 @@ export default app.listen(port, () => {
 })
 
 
-mongoose.connect(testurl, options);
+mongoose.connect(URL, options);
 const connection = mongoose.connection;
 connection.on('error', err => console.error('connection error: ', err));
 connection.once('open', () => console.log('connected to: ', connection.name))
