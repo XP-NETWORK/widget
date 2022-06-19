@@ -6,8 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "NODE_ENV=dev mocha --timeout 360000 --check-leaks -r tsconfig-paths/register -r ts-node/register \"test/**/*.spec.ts\"",
-    "start": "node ./dist/src/index.js",
-    "postinstall": "tsc",
+    "start": " yarn build && node dist/index.js",
     "dev": "nodemon ./src/index.ts"
   },
   "keywords": [],
