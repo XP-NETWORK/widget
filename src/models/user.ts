@@ -21,7 +21,7 @@ schema.statics.getUser = async function (signature: string, address: string) {
         const result = await this.findOne({ signature: signature, address: address })
         if (result)
         {
-            resolve("that user already exist")
+            resolve(result)
         }
         else{
             resolve("no user with that signature and message combination")

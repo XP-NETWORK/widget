@@ -4,23 +4,20 @@ import { getEditor } from './getEditor'
 
 export const getWidgetsOfEditor = async (req: any, res: any) => {
 
-    return await new Promise(async (resolve: any, reject: any) => {
-
         try {
             if (!req.user) {
                 res.send("no user received")
                 return
             }
-
-            const { user } = req
-            const editor: any = await EDITOR.getEditor(user._id)
-            if (editor) {
-                const widgets = await WIDGET.getAllWidgetsOfEditor(editor.editorId)
-                if (widgets) {
-                    return widgets
+            const _user = req.user
+            const _editor: any = await EDITOR.getEditor(_user._id)
+            if (_editor) {
+                const _widgets = await WIDGET.getAllWidgetsOfEditor(_editor.widgetId)
+                if (_widgets) {
+                    res.send(_widgets)
                 }
                 else {
-                    return "no widgets for that editor"
+                    res.send("no widgets for that editor")
                 }
             }
             else{
@@ -29,7 +26,4 @@ export const getWidgetsOfEditor = async (req: any, res: any) => {
         } catch (error) {
             res.send(error)
         }
-
-    })
-
 }

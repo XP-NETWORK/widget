@@ -6,12 +6,13 @@ export const verifyUser = async (req: any, res: any,next: any)=>{
         res.send("no signature or address sent")
         return
     }
-
+    
     const {signature,address} = req.query
     const user = await USER.getUser(signature,address)
 
     if(user)
     {
+        //console.log("my user is: ",user)
         req.user = user
         next()
     }

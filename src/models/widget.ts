@@ -24,7 +24,7 @@ schema.statics.addWidget = async function (widgetObj: any) {
 
             const widget = await this.findOne({ name: widgetObj.name })
             if (widget) {
-                resolve("that widget, or widget with that name already exists")
+                resolve(widget)
             }
             else {
 
@@ -79,18 +79,19 @@ schema.statics.changeWidget = async function (editorName, widgetName, changesObj
     })
 }
 
-schema.statics.getAllWidgetsOfEditor = async function (editorId: String) {
+schema.statics.getAllWidgetsOfEditor = async function (widgetId: String) {
     return await new Promise(async (resolve: any, reject: any) => {
         try {
-            const result = await WIDGET.find({ editor: editorId })
+            const result = await WIDGET.find({ _id:widgetId })
+            console.log("result here is: ",result)
             if (result) {
-                return result
+                resolve(result)
             }
             else {
-                return "no widgets of that editor found"
+                resolve("no widgets of that editor found")
             }
         } catch (error) {
-            return error
+            reject(error)
         }
 
     })

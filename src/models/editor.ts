@@ -33,7 +33,7 @@ schema.statics.addEditor = async function (editorId:String,widgetId:String) {
         let user = await this.findOne({ widgetId: widgetId })
         if (user !== null) {
 
-            resolve("that editor already exists")
+            resolve(user)
         }
         else {
 
