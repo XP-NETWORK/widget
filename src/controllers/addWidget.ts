@@ -5,6 +5,7 @@ import WIDGET from "../models/widget"
 //a function that receives a widget object (with the name of the widget and the editor inside already)
 //and adds it to the DB
 export const addWidget = async (req: any, res: any) => {
+    
     try {
         if (!req.body.widget||!req.body.signature||!req.body.address) {
             res.send("no widget object/signature/address were sent")
