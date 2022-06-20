@@ -6,7 +6,7 @@ import { IUSERDocument, IUSERModel, IUSER } from './interfaces/user'
 
 export const docUSER = {
     signature: { type: String },
-    message: { type: String }
+    address: { type: String }
 }
 
 export const schema = CustomDocumentBuild(docUSER)
@@ -16,9 +16,9 @@ export const schema = CustomDocumentBuild(docUSER)
  */
 
 
-schema.statics.getUser = async function (signature: string, message: string) {
+schema.statics.getUser = async function (signature: string, address: string) {
     return await new Promise(async (resolve: any, reject: any) => {
-        const result = await this.findOne({ signature: signature, message: message })
+        const result = await this.findOne({ signature: signature, address: address })
         if (result)
         {
             resolve("that user already exist")
@@ -30,16 +30,16 @@ schema.statics.getUser = async function (signature: string, message: string) {
 }
 
 
-schema.statics.addUser = async function (signature: String, message: String) {
+schema.statics.addUser = async function (signature: String, address: String) {
     return await new Promise(async (resolve: any, reject: any) => {
-        let user = await this.findOne({ signature: signature, message: message })
+        let user = await this.findOne({ signature: signature, address: address })
         if (user !== null) {
 
             resolve(user)
         }
         else {
 
-            let newUser = await this.create({ signature: signature, message: message })
+            let newUser = await this.create({ signature: signature, address: address })
             resolve(newUser)
         }
     })

@@ -1,8 +1,8 @@
 import { Document, Model, Schema } from 'mongoose'
 
 export interface IEDITOR {
-    signature:{type:string},
-    message:{type:string}
+    editorId:{type:String},
+    widgetId:{type:String}
 }
 
 // Instance methods
@@ -14,6 +14,6 @@ export interface IEDITORDocument extends IEDITOR, Document {
 // Static methods
 export interface IEDITORModel extends Model<IEDITORDocument> {
     //getByURI(uri: string): Promise<IUSERDocument>
-    getEditor(signature:string,message:string): Promise<IEDITORDocument>
-    addEditor(signature:string,message:string): Promise<IEDITORDocument>
+    getEditor(editorId:String): Promise<IEDITORDocument>
+    addEditor(editorId:String,widgetId:String): Promise<IEDITORDocument>
 }

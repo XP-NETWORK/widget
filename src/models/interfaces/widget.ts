@@ -1,9 +1,6 @@
 import { Document, Model, Schema } from 'mongoose'
 
 export interface IWIDGET{
-    name:{type:String},
-    users:{type:[String]},
-    editor:{type:String},
     blockchains:{type:[String]},
     wallets:{type:[String]},
     background:{type:Schema.Types.Mixed},//color, panel color, modal color
@@ -23,4 +20,5 @@ export interface IWIDGETDocument extends IWIDGET, Document {
 export interface IWIDGETModel extends Model<IWIDGETDocument> {    
     addWidget(widgetObj:any): Promise<IWIDGETDocument>
     getWidget(userName:string, widgetName: string): Promise<IWIDGETDocument>
+    getAllWidgetsOfEditor(editorId:String): Promise<IWIDGETDocument>
 }

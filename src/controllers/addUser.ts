@@ -8,8 +8,8 @@ export const addUser = async (req: any, res: any) => {
             res.send("signature or message not sent")
             return
         }
-        const { signature, message } = req.body
-        const result = await USER.addUser(signature, message)
+        const { signature, address } = req.body
+        const result = await USER.addUser(signature, address)
         console.log(result)
         if (result) {
             res.send(result)

@@ -3,8 +3,8 @@ import { CustomDocumentBuild } from '../mongodb/documentDefaults';
 import { IEDITORDocument, IEDITORModel, IEDITOR } from './interfaces/editor'
 
 export const docEDITOR = {
-    signature: { type: String },
-    message: { type: String }
+    editorId:{type:String},
+    widgetId:{type:String}
 }
 
 export const schema = CustomDocumentBuild(docEDITOR)
@@ -14,9 +14,9 @@ export const schema = CustomDocumentBuild(docEDITOR)
  */
 
 
-schema.statics.getEditor = async function (signature: string, message: string) {
+schema.statics.getEditor = async function (editorId:String) {
     return await new Promise(async (resolve: any, reject: any) => {
-        const result = await this.findOne({ signature: signature, message: message })
+        const result = await this.findOne({ editorId: editorId })
         if (result)
         {
             resolve(result)
@@ -28,16 +28,16 @@ schema.statics.getEditor = async function (signature: string, message: string) {
 }
 
 
-schema.statics.addEditor = async function (signature: String, message: String) {
+schema.statics.addEditor = async function (editorId:String,widgetId:String) {
     return await new Promise(async (resolve: any, reject: any) => {
-        let user = await this.findOne({ signature: signature, message: message })
+        let user = await this.findOne({ widgetId: widgetId })
         if (user !== null) {
 
             resolve("that editor already exists")
         }
         else {
 
-            let newEditor = await this.create({ signature: signature, message: message })
+            let newEditor = await this.create({ editorId:editorId,widgetId:widgetId })
             resolve(newEditor)
         }
     })
