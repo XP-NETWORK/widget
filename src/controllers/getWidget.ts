@@ -3,13 +3,13 @@ import WIDGET from '../models/widget'
 export const getWidget = async (req: any, res: any) => {
     try {
         
-        if(!req.query.widgetName||!req.query.userName){
+        if(!req.query.widgetId){
             res.send("widget or user name were not sent")
             return
         }
 
-        const {widgetName, userName} = req.query
-        const result = await WIDGET.getWidget(userName,widgetName)
+        const {widgetId} = req.query
+        const result = await WIDGET.getWidget(widgetId)
 
         if(result)
         {

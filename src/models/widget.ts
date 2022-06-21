@@ -36,17 +36,12 @@ schema.statics.addWidget = async function (widgetObj: any) {
     })
 }
 
-schema.statics.getWidget = async function (userName, widgetName) {
+schema.statics.getWidget = async function (widgetId) {
     return await new Promise(async (resolve: any, reject: any) => {
         try {
-            const widget = await this.findOne({ name: widgetName })
+            const widget = await this.findOne({ _id: widgetId })
             if (widget) {
-                if (widget.users.indexOf(userName) > -1) {
-                    resolve(widget)
-                }
-                else {
-                    resolve("user not allowed to use this widget")
-                }
+                resolve(widget)
             }
             else {
                 resolve("not found such widget")
