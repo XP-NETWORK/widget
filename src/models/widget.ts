@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { model, Schema } from 'mongoose'
 import { CustomDocumentBuild } from '../mongodb/documentDefaults';
 import { IWIDGETDocument, IWIDGETModel, IWIDGET } from './interfaces/widget'
@@ -13,7 +14,8 @@ export const docWIDGET = {
     borders: { type: Object },
     icons: { type: Object },
     tooltips: { type: Schema.Types.Mixed },//color, background
-    affiliation_settings: { type: Schema.Types.Mixed }
+    affiliation_settings: { type: Schema.Types.Mixed },
+    isDeleted: { type: Boolean,default:false }
 }
 
 export const schema = CustomDocumentBuild(docWIDGET)
@@ -77,8 +79,8 @@ schema.statics.changeWidget = async function (editorName, widgetName, changesObj
 schema.statics.getAllWidgetsOfEditor = async function (widgetId: String) {
     return await new Promise(async (resolve: any, reject: any) => {
         try {
-            const result = await WIDGET.find({ _id:widgetId })
-            console.log("result here is: ",result)
+            const result = await WIDGET.find({ _id: widgetId })
+            console.log("result here is: ", result)
             if (result) {
                 resolve(result)
             }
@@ -89,6 +91,24 @@ schema.statics.getAllWidgetsOfEditor = async function (widgetId: String) {
             reject(error)
         }
 
+    })
+}
+
+schema.statics.deleteWidget = async function (widgetId: String) {
+    return await new Promise(async (resolve: any, reject: any) => {
+        try {
+            const widget = await WIDGET.findOne({ _id: widgetId })
+            console.log(widget)
+            if (widget) {
+                await WIDGET.findByIdAndUpdate(widgetId, { isDeleted: true })
+                resolve("deleted successfully")
+            }
+            else {
+                resolve("didn't find widget with that id")
+            }
+        } catch (error) {
+            reject(error)
+        }
     })
 }
 

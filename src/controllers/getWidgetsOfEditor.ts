@@ -12,9 +12,14 @@ export const getWidgetsOfEditor = async (req: any, res: any) => {
             const _user = req.user
             const _editor: any = await EDITOR.getEditor(_user._id)
             if (_editor) {
-                const _widgets = await WIDGET.getAllWidgetsOfEditor(_editor.widgetId)
+                const _widgets: any = await WIDGET.getAllWidgetsOfEditor(_editor.widgetId)
                 if (_widgets) {
-                    res.send(_widgets)
+                    const myWidgets = _widgets.filter((widget:any)=>{
+                        if(!widget.isDeleted)
+                        return widget
+                     })
+                    res.send(myWidgets)
+                    return
                 }
                 else {
                     res.send("no widgets for that editor")

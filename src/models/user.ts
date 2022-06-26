@@ -29,6 +29,29 @@ schema.statics.getUser = async function (signature: string, address: string) {
     })
 }
 
+schema.statics.getUserById = async function (userId: String){
+    return await new Promise( async (resolve: any, reject: any)=>{
+
+        try {
+            if(!userId)
+        {
+            reject("userId not sent")
+        }
+        const user = await USER.findById(userId)
+        if(user)
+        {
+            resolve(user)
+        }
+        else{
+            resolve(-1)
+        }
+
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 
 schema.statics.addUser = async function (signature: String, address: String) {
     return await new Promise(async (resolve: any, reject: any) => {

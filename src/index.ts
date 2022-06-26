@@ -64,7 +64,7 @@ export default app.listen(port, () => {
 })
 
 
-mongoose.connect(URL, options);
+mongoose.connect(testurl, options);
 const connection = mongoose.connection;
 connection.on('error', err => console.error('connection error: ', err));
 connection.once('open', () => console.log('connected to: ', connection.name))

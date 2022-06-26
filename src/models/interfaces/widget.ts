@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { Document, Model, Schema } from 'mongoose'
 
 export interface IWIDGET{
@@ -10,7 +11,8 @@ export interface IWIDGET{
     borders:{type:String},
     icons:{type:String},
     tooltips: {type:Schema.Types.Mixed},//color, background
-    affiliation_settings: {type:Schema.Types.Mixed}
+    affiliation_settings: {type:Schema.Types.Mixed},
+    isDeleted: {type: Boolean,default:false}
 }
 
 export interface IWIDGETDocument extends IWIDGET, Document {
@@ -21,4 +23,5 @@ export interface IWIDGETModel extends Model<IWIDGETDocument> {
     addWidget(widgetObj:any): Promise<IWIDGETDocument>
     getWidget( widgetId: string): Promise<IWIDGETDocument>
     getAllWidgetsOfEditor(editorId:String): Promise<IWIDGETDocument>
+    deleteWidget(widgetId:String): Promise<String>
 }
