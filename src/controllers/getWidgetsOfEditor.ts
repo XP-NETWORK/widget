@@ -14,11 +14,11 @@ export const getWidgetsOfEditor = async (req: any, res: any) => {
             if (_editor) {
                 const _widgets: any = await WIDGET.getAllWidgetsOfEditor(_editor.widgetId)
                 if (_widgets) {
-                    const myWidgets = _widgets.filter((widget:any)=>{
+                    /*const myWidgets = _widgets.filter((widget:any)=>{
                         if(!widget.isDeleted)
                         return widget
-                     })
-                    res.send(myWidgets)
+                     })*/
+                    res.send(_widgets/*myWidgets*/)
                     return
                 }
                 else {

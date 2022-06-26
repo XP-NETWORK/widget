@@ -79,7 +79,7 @@ schema.statics.changeWidget = async function (editorName, widgetName, changesObj
 schema.statics.getAllWidgetsOfEditor = async function (widgetId: String) {
     return await new Promise(async (resolve: any, reject: any) => {
         try {
-            const result = await WIDGET.find({ _id: widgetId })
+            const result = await WIDGET.find({ _id: widgetId,isDeleted:false })
             console.log("result here is: ", result)
             if (result) {
                 resolve(result)
