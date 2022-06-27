@@ -14,10 +14,10 @@ export const addWidget = async (req: any, res: any) => {
         const {widget,signature,address} = req.body
         const _user = await USER.addUser(signature,address)
         const _widget = await WIDGET.addWidget(widget)
-        await EDITOR.addEditor(_user._id,_widget._id)
+        const updatedUser = await USER.updateUserWidgetList(address,_widget._id)
 
-        if (_widget) {
-            res.send(_widget)
+        if (updatedUser) {
+            res.send({"updatedUser" : updatedUser , "new widget" : _widget })
             return
         }
         else {

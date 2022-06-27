@@ -22,15 +22,14 @@ export const schema = CustomDocumentBuild(docWIDGET)
 schema.statics.addWidget = async function (widgetObj: any) {
     return await new Promise(async (resolve: any, reject: any) => {
         try {
-
-            const widget = await this.findOne({ name: widgetObj.name })
-            if (widget) {
-                resolve(widget)
-            }
-            else {
-
+            // const widget = await this.findOne({ name: widgetObj.name })
+            // if (widget) {
+            //     console.log("got here")
+            //     resolve(widget)
+            // }
+            // else {
                 resolve(await this.create(widgetObj))
-            }
+            // }
         } catch (error) {
             reject(error)
         }

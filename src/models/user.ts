@@ -63,6 +63,16 @@ schema.statics.addUser = async function (signature: String, address: String) {
     })
 }
 
+schema.statics.updateUserWidgetList = async function ( address: String, id: String) {
+    return new Promise((res, rej) => {
+        const query = this.findOneAndUpdate({ address }, {$push: { widgets: id } }, { new: true, fields: "widgets" })
+        query.exec().then((r: any, err: any) => {
+            if (err || !r) rej()
+            else res(r)
+        })
+    })
+}
+
 const USER: IUSERModel = model<IUSERDocument, IUSERModel>('users', schema)
 export default USER
 export {
