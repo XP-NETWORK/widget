@@ -1,8 +1,6 @@
 import USER  from "../models/user"
 
-
-
-export const  getUser = async(req:any,res:any)=>{
+export const getUser = async(req:any,res:any)=>{
     try {
         if(!req.query.address||!req.query.signature)
         {

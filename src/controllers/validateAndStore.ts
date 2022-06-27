@@ -34,9 +34,6 @@ export const validateAndStore = async (req: any, res: any) => {
                 res.send(err)
                 return
             })
-
-
-
     } catch (error) {
         res.send(error)
         return

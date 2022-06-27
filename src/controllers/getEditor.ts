@@ -1,6 +1,5 @@
 import EDITOR from "../models/editor";
 
-
 export const getEditor= async (req: any,res: any)=>{
     try {
         if(!req.query.editorId)

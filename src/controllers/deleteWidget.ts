@@ -2,7 +2,6 @@ import EDITOR from "../models/editor"
 import USER from "../models/user"
 import WIDGET from "../models/widget"
 
-
 export const deleteWidget = async (req: any, res: any) => {
     try {
         if(!req.body.widgetId)
