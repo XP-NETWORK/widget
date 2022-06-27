@@ -4,13 +4,13 @@ import USER  from "../models/user"
 
 export const  getUser = async(req:any,res:any)=>{
     try {
-        if(!req.query.message||!req.query.signature)
+        if(!req.query.address||!req.query.signature)
         {
-            res.send("signature or message were not sent")
+            res.send("signature or address were not sent")
             return
         }
-        const {message,signature} = req.query
-        const user = await USER.getUser(signature,message)
+        const {address,signature} = req.query
+        const user = await USER.getUser(signature,address)
         res.send(user)
         return
     } catch (error) {

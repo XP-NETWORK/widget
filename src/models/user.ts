@@ -6,7 +6,8 @@ import { IUSERDocument, IUSERModel, IUSER } from './interfaces/user'
 
 export const docUSER = {
     signature: { type: String },
-    address: { type: String }
+    address: { type: String },
+    widgets: { type: {} }
 }
 
 export const schema = CustomDocumentBuild(docUSER)
@@ -19,32 +20,29 @@ export const schema = CustomDocumentBuild(docUSER)
 schema.statics.getUser = async function (signature: string, address: string) {
     return await new Promise(async (resolve: any, reject: any) => {
         const result = await this.findOne({ signature: signature, address: address })
-        if (result)
-        {
+        if (result) {
             resolve(result)
         }
-        else{
+        else {
             resolve("no user with that signature and message combination")
         }
     })
 }
 
-schema.statics.getUserById = async function (userId: String){
-    return await new Promise( async (resolve: any, reject: any)=>{
+schema.statics.getUserById = async function (userId: String) {
+    return await new Promise(async (resolve: any, reject: any) => {
 
         try {
-            if(!userId)
-        {
-            reject("userId not sent")
-        }
-        const user = await USER.findById(userId)
-        if(user)
-        {
-            resolve(user)
-        }
-        else{
-            resolve(-1)
-        }
+            if (!userId) {
+                reject("userId not sent")
+            }
+            const user = await USER.findById(userId)
+            if (user) {
+                resolve(user)
+            }
+            else {
+                resolve(-1)
+            }
 
         } catch (error) {
             reject(error)
@@ -56,12 +54,10 @@ schema.statics.addUser = async function (signature: String, address: String) {
     return await new Promise(async (resolve: any, reject: any) => {
         let user = await this.findOne({ signature: signature, address: address })
         if (user !== null) {
-
             resolve(user)
         }
         else {
-
-            let newUser = await this.create({ signature: signature, address: address })
+            let newUser = await this.create({ signature: signature, address: address, widgets: [] })
             resolve(newUser)
         }
     })
