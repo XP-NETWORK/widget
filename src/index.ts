@@ -3,7 +3,6 @@ import { config } from 'dotenv'
 import mongoose from "mongoose";
 import cors from 'cors'
 import router from './routes/routes'
-import bodyParser from "body-parser";
 config()
 const port = process.env.PORT || 3030;
 //const URL: string = mongoURL || ""
@@ -62,7 +61,7 @@ export default app.listen(port, () => {
     console.log(`Server runs on port ${port}`)
 })
 
-mongoose.connect(testurl, options);
+mongoose.connect(URL, options);
 const connection = mongoose.connection;
 connection.on('error', err => console.error('connection error: ', err));
 connection.once('open', () => console.log('connected to: ', connection.name))
