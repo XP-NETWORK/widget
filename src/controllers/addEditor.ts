@@ -4,8 +4,6 @@ import WIDGET from "../models/widget"
 
 export const addEditor = async (req: any,res:any )=>{{
     try {
-        
-        
         if(!req.body.widgetId || !req.body.userId)
         {
             res.send("widgetId and/or userId missing")

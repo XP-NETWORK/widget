@@ -20,7 +20,6 @@ export const validateAndStore = async (req: any, res: any) => {
 
                     const result = await TX.addTx(widgetId, txHash, chainId)
 
-
                     if (result) {
                         res.send(result)
                         return

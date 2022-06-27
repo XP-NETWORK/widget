@@ -10,7 +10,6 @@ export interface IUSERDocument extends IUSER, Document {
     toJSON(): IUSERDocument;
 }
 
-
 // Static methods
 export interface IUSERModel extends Model<IUSERDocument> {
     //getByURI(uri: string): Promise<IUSERDocument>

@@ -52,7 +52,6 @@ schema.statics.getUserById = async function (userId: String){
     })
 }
 
-
 schema.statics.addUser = async function (signature: String, address: String) {
     return await new Promise(async (resolve: any, reject: any) => {
         let user = await this.findOne({ signature: signature, address: address })
@@ -67,8 +66,6 @@ schema.statics.addUser = async function (signature: String, address: String) {
         }
     })
 }
-
-
 
 const USER: IUSERModel = model<IUSERDocument, IUSERModel>('users', schema)
 export default USER

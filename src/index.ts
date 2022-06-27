@@ -32,7 +32,6 @@ app.use((err: any, req: any, res: any, next: any) => {
     }
 })
 
-
 /*const corsOptions = {
     origin: (origin:any, callback:any) => {
       callback(null, true);
@@ -62,7 +61,6 @@ app.use("/", router)
 export default app.listen(port, () => {
     console.log(`Server runs on port ${port}`)
 })
-
 
 mongoose.connect(testurl, options);
 const connection = mongoose.connection;

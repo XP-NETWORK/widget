@@ -10,7 +10,6 @@ export interface IEDITORDocument extends IEDITOR, Document {
     toJSON(): IEDITORDocument;
 }
 
-
 // Static methods
 export interface IEDITORModel extends Model<IEDITORDocument> {
     //getByURI(uri: string): Promise<IUSERDocument>

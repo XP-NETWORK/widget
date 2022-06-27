@@ -13,7 +13,6 @@ export const schema = CustomDocumentBuild(docEDITOR)
  * MODEL NFT, used for interactions with MongoDB
  */
 
-
 schema.statics.getEditor = async function (editorId:String) {
     return await new Promise(async (resolve: any, reject: any) => {
         const result = await this.findOne({ editorId: editorId })
@@ -26,7 +25,6 @@ schema.statics.getEditor = async function (editorId:String) {
         }
     })
 }
-
 
 schema.statics.addEditor = async function (editorId:String,widgetId:String) {
     return await new Promise(async (resolve: any, reject: any) => {
@@ -42,8 +40,6 @@ schema.statics.addEditor = async function (editorId:String,widgetId:String) {
         }
     })
 }
-
-
 
 const EDITOR: IEDITORModel = model<IEDITORDocument, IEDITORModel>('editors', schema)
 export default EDITOR

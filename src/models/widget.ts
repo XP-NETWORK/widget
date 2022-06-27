@@ -3,7 +3,6 @@ import { model, Schema } from 'mongoose'
 import { CustomDocumentBuild } from '../mongodb/documentDefaults';
 import { IWIDGETDocument, IWIDGETModel, IWIDGET } from './interfaces/widget'
 
-
 export const docWIDGET = {
     blockchains: { type: [String] },
     wallets: { type: [String] },

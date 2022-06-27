@@ -5,7 +5,6 @@ import WIDGET from "../models/widget"
 
 export const deleteWidget = async (req: any, res: any) => {
     try {
-
         if(!req.body.widgetId)
         {
             res.send("no widget id sent")

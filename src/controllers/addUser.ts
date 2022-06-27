@@ -3,7 +3,6 @@ import USER from "../models/user"
 //a function to add user (signature and message) to the DB
 export const addUser = async (req: any, res: any) => {
     try {
-
         if (!req.body.signature || !req.body.message) {
             res.send("signature or message not sent")
             return

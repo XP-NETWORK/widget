@@ -11,7 +11,6 @@ export interface ITXDocument extends ITX, Document {
     toJSON(): ITXDocument;
 }
 
-
 // Static methods
 export interface ITXModel extends Model<ITXDocument> {
     //getByURI(uri: string): Promise<IUSERDocument>
