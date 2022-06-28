@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { model, Schema } from 'mongoose'
+import { ConnectionStates, model, Schema } from 'mongoose'
 import { CustomDocumentBuild } from '../mongodb/documentDefaults';
 import { IWIDGETDocument, IWIDGETModel, IWIDGET } from './interfaces/widget'
 
@@ -14,7 +14,7 @@ export const docWIDGET = {
     icons: { type: Object },
     tooltips: { type: Schema.Types.Mixed },//color, background
     affiliation_settings: { type: Schema.Types.Mixed },
-    isDeleted: { type: Boolean,default:false }
+    isDeleted: { type: Boolean, default: false }
 }
 
 export const schema = CustomDocumentBuild(docWIDGET)
@@ -28,7 +28,7 @@ schema.statics.addWidget = async function (widgetObj: any) {
             //     resolve(widget)
             // }
             // else {
-                resolve(await this.create(widgetObj))
+            resolve(await this.create(widgetObj))
             // }
         } catch (error) {
             reject(error)
@@ -73,7 +73,7 @@ schema.statics.updateWidget = async function (newWidget, widgetId,) {
 schema.statics.getAllWidgetsOfEditor = async function (widgetId: String) {
     return await new Promise(async (resolve: any, reject: any) => {
         try {
-            const result = await WIDGET.find({ _id: widgetId,isDeleted:false })
+            const result = await WIDGET.find({ _id: widgetId, isDeleted: false })
             console.log("result here is: ", result)
             if (result) {
                 resolve(result)
