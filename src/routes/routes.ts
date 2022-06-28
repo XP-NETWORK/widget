@@ -25,5 +25,5 @@ router.delete("/deleteWidget",deleteWidget)
 
 router.patch("/updateWidget",updateWidget)
 
-router.post("testnetTrx" , postTestnetTrx)
+router.post("testnetTrx", postTestnetTrx)
 export default router
