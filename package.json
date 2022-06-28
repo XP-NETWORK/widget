@@ -22,6 +22,9 @@
     "nodemon": "^2.0.16"
   },
   "dependencies": {
+    "@elrondnetwork/erdjs": "^10.2.6",
+    "@taquito/taquito": "^13.0.0",
+    "@temple-wallet/dapp": "^7.0.0",
     "@types/axios": "^0.14.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
@@ -31,12 +34,14 @@
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
+    "ethers": "^5.6.9",
     "express": "^4.18.1",
     "mogoose": "^0.0.1-security",
     "mongodb": "^4.7.0",
     "mongoose": "^6.3.8",
     "ts-node": "^10.8.1",
     "tsconfig-paths": "^4.0.0",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.3",
+    "xp.network": "git+https://github.com/xp-network/xpjs#bleeding-edge"
   }
 }
