@@ -11,11 +11,6 @@ export const docUSER = {
 }
 
 export const schema = CustomDocumentBuild(docUSER)
-//schema.index({ uri: 1 })
-/**
- * MODEL NFT, used for interactions with MongoDB
- */
-
 
 schema.statics.getUser = async function (signature: string, address: string) {
     return await new Promise(async (resolve: any, reject: any) => {

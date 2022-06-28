@@ -8,10 +8,6 @@ export const docEDITOR = {
 }
 
 export const schema = CustomDocumentBuild(docEDITOR)
-//schema.index({ uri: 1 })
-/**
- * MODEL NFT, used for interactions with MongoDB
- */
 
 schema.statics.getEditor = async function (editorId:String) {
     return await new Promise(async (resolve: any, reject: any) => {
