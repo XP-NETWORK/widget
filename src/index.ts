@@ -31,30 +31,6 @@ app.use((err: any, req: any, res: any, next: any) => {
     }
 })
 
-/*const corsOptions = {
-    origin: (origin:any, callback:any) => {
-      callback(null, true);
-    },
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    allowedHeaders: ["Access-Control-Allow-Origin", "Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
-    credentials: true
-  };*/
-
-
-//app.options('*', cors(corsOptions))
-//app.use(cors(corsOptions))
-
-// app.use('/', express.static('./public'));
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, token");
-//     if (req.method === "OPTIONS") {
-//         res.header("Access-Control-Allow-Methods", "PUT, POST, DELETE, GET");
-//         return res.status(200).json({});
-//     }
-//     next();
-// });
-
 app.use("/", router)
 
 export default app.listen(port, () => {
