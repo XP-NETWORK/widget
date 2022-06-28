@@ -24,5 +24,5 @@ export interface IWIDGETModel extends Model<IWIDGETDocument> {
     getWidget(widgetId: string): Promise<IWIDGETDocument>
     getAllWidgetsOfEditor(editorId: String): Promise<IWIDGETDocument>
     deleteWidget(widgetId: String): Promise<String>
-    changeWidget(widgetObj: any, widgetId: string): any
+    updateWidget(widgetObj: any, widgetId: string): any
 }

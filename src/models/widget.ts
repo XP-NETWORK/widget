@@ -52,22 +52,18 @@ schema.statics.getWidget = async function (widgetId) {
     })
 }
 
-schema.statics.changeWidget = async function (editorName, widgetName, changesObj) {
+schema.statics.updateWidget = async function (newWidget, widgetId,) {
     return await new Promise(async (resolve: any, reject: any) => {
         try {
-            const widget = this.findOne({ name: widgetName })
-
-            if (widget) {
-                if (widget.editors.indexOf(editorName) > -1) {
-                    return await this.findOneAndUpdate({ name: widgetName }, { changesObj })
-                }
-                else {
-                    resolve("not allowed to change widget")
-                }
+            const oldWidget = await this.findOne({ _id: widgetId })
+            let updatedWidget;
+            if (oldWidget) {
+                updatedWidget = await this.findOneAndUpdate({ _id: widgetId }, newWidget)
             }
             else {
-                resolve("not found widget with that name")
+                updatedWidget = "not found widget with that name"
             }
+            resolve(updatedWidget)
         } catch (error) {
             reject(error)
         }
