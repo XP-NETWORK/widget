@@ -7,6 +7,7 @@ import { verifyUser } from '../middleware/verifyUser'
 import { getWidgetsOfEditor } from '../controllers/getWidgetsOfEditor'
 import { deleteWidget } from '../controllers/deleteWidget'
 import { validateAndStore } from '../controllers/validateAndStore'
+import { updateWidget } from '../controllers/updateWidget'
 
 const router = express.Router()
 
@@ -21,5 +22,6 @@ router.post ("/validateAndStore",validateAndStore)
 
 router.delete("/deleteWidget",deleteWidget)
 
+router.patch("/updateWidget",updateWidget)
 
 export default router
