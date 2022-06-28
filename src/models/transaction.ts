@@ -9,11 +9,6 @@ export const docTX = {
 }
 
 export const schema = CustomDocumentBuild(docTX)
-//schema.index({ uri: 1 })
-/**
- * MODEL NFT, used for interactions with MongoDB
- */
-
 
 schema.statics.addTx = async function (widgetId:String,txHash:String,chainId:String){
     return await new Promise(async(resolve: any, reject: any)=>{
@@ -24,7 +19,6 @@ schema.statics.addTx = async function (widgetId:String,txHash:String,chainId:Str
         if(tx !== null)
         {
             console.log("in 1");
-            
             resolve(tx)
         }
         else{
@@ -36,8 +30,6 @@ schema.statics.addTx = async function (widgetId:String,txHash:String,chainId:Str
         }
     })
 }
-
-
 
 const TX: ITXModel = model<ITXDocument, ITXModel>('transactions', schema)
 export default TX
