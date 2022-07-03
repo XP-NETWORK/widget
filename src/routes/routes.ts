@@ -8,7 +8,6 @@ import { getWidgetsOfEditor } from '../controllers/getWidgetsOfEditor'
 import { deleteWidget } from '../controllers/deleteWidget'
 import { validateAndStore } from '../controllers/validateAndStore'
 import { updateWidget } from '../controllers/updateWidget'
-import { postTestnetTrx } from "../controllers/postTestnetTrx"
 
 const router = express.Router()
 
@@ -25,5 +24,4 @@ router.delete("/deleteWidget", deleteWidget)
 
 router.patch("/updateWidget", updateWidget)
 
-router.post("testnetTrx", postTestnetTrx)
 export default router
