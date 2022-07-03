@@ -58,9 +58,9 @@ schema.statics.addUser = async function (signature: String, address: String) {
     })
 }
 
-schema.statics.updateUserWidgetList = async function ( address: String, id: String) {
+schema.statics.updateUserWidgetList = async function ( address: any, id: any) {
     return new Promise((res, rej) => {
-        const query = this.findOneAndUpdate({ address }, {$push: { widgets: id } }, { new: true, fields: "widgets" })
+        const query = this.update({ address }, {$push: { widgets: id } }, { new: true, fields: "widgets" })
         query.exec().then((r: any, err: any) => {
             if (err || !r) rej()
             else res(r)

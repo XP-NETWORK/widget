@@ -4,8 +4,8 @@ import { CustomDocumentBuild } from '../mongodb/documentDefaults';
 import { IWIDGETDocument, IWIDGETModel, IWIDGET } from './interfaces/widget'
 
 export const docWIDGET = {
-    blockchains: { type: [String] },
-    wallets: { type: [String] },
+    // blockchains: { type: [String] },
+    // wallets: { type: [String] },
     background: { type: Schema.Types.Mixed },//color, panel color, modal color
     typography: { type: Schema.Types.Mixed },//font color, secondaary font color, accent font color, font family, font size
     buttons: { type: Schema.Types.Mixed },//color, text color, corner radius
@@ -14,7 +14,8 @@ export const docWIDGET = {
     icons: { type: Object },
     tooltips: { type: Schema.Types.Mixed },//color, background
     affiliation_settings: { type: Schema.Types.Mixed },
-    isDeleted: { type: Boolean, default: false }
+    isDeleted: { type: Boolean, default: false },
+    settings: { type: Object },
 }
 
 export const schema = CustomDocumentBuild(docWIDGET)
@@ -28,7 +29,7 @@ schema.statics.addWidget = async function (widgetObj: any) {
             //     resolve(widget)
             // }
             // else {
-            resolve(await this.create(widgetObj))
+            resolve(await this.create({ settings: widgetObj }))
             // }
         } catch (error) {
             reject(error)
