@@ -59,7 +59,7 @@ schema.statics.updateWidget = async function (newWidget, widgetId,) {
             const oldWidget = await this.findOne({ _id: widgetId })
             let updatedWidget;
             if (oldWidget) {
-                updatedWidget = await this.findOneAndUpdate({ _id: widgetId }, newWidget)
+                updatedWidget = await this.updateOne({ _id: widgetId }, {settings: newWidget})
             }
             else {
                 updatedWidget = "not found widget with that name"
