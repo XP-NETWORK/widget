@@ -49,7 +49,7 @@ schema.statics.addUser = async function (signature: String, address: String) {
     return await new Promise(async (resolve: any, reject: any) => {
         let user = await this.findOne({ signature: signature, address: address })
         if (user !== null) {
-            resolve(user)
+            resolve("user already exists")
         }
         else {
             let newUser = await this.create({ signature: signature, address: address, widgets: [] })
@@ -60,7 +60,7 @@ schema.statics.addUser = async function (signature: String, address: String) {
 
 schema.statics.updateUserWidgetList = async function ( address: any, id: any) {
     return new Promise((res, rej) => {
-        const query = this.update({ address }, {$push: { widgets: id } }, { new: true, fields: "widgets" })
+        const query = this.updateOne({ address }, { $push: { widgets: id } }, { new: true, fields: "widgets" })
         query.exec().then((r: any, err: any) => {
             if (err || !r) rej()
             else res(r)

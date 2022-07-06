@@ -16,6 +16,6 @@ export interface IUSERModel extends Model<IUSERDocument> {
     //getByURI(uri: string): Promise<IUSERDocument>
     getUser(signature: string, address: string): Promise<IUSERDocument>
     getUserById(userId: string): Promise<any>
-    addUser(signature: string, address: string): Promise<IUSERDocument>
-    updateUserWidgetList(address:string , widgetId:string):any
+    addUser(signature: string, address: string): Promise<IUSERDocument | string>
+    updateUserWidgetList(address: string, widgetId: string): any
 }
