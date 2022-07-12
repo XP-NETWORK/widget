@@ -17,7 +17,7 @@ export const addWidget = async (req: any, res: any) => {
         const updatedUser = await USER.updateUserWidgetList(address,_widget._id)
 
         if (updatedUser) {
-            res.send({"updatedUser" : updatedUser , "new widget" : _widget })
+            res.send({"updatedUser" : updatedUser , "newWidget" : _widget })
             return
         }
         else {
