@@ -6,8 +6,9 @@ import { getWidget } from '../controllers/getWidget'
 import { verifyUser } from '../middleware/verifyUser'
 import { getWidgetsOfEditor } from '../controllers/getWidgetsOfEditor'
 import { deleteWidget } from '../controllers/deleteWidget'
-import { validateAndStore } from '../controllers/validateAndStore'
+// import { validateAndStore } from '../controllers/validateAndStore'
 import { updateWidget } from '../controllers/updateWidget'
+import {addTransaction} from "../controllers/addTransaction"
 
 const router = express.Router()
 
@@ -18,7 +19,8 @@ router.get("/getWidget", getWidget)
 
 router.post("/addUser", addUser)
 router.post("/addWidget", addWidget)
-router.post("/validateAndStore", validateAndStore)
+router.post("/addTransaction", addTransaction)
+// router.post("/validateAndStore", validateAndStore)
 
 router.delete("/deleteWidget", deleteWidget)
 

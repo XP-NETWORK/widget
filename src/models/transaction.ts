@@ -3,28 +3,28 @@ import { CustomDocumentBuild } from '../mongodb/documentDefaults';
 import { ITXDocument, ITXModel, ITX } from './interfaces/transaction'
 
 export const docTX = {
-    widgetId:{type:String},
-    txHash:{type:String},
-    chainId:{type:String}
+    widgetId: { type: String },
+    txHash: { type: String },
+    fromChain: { type: String },
+    toCahin: { type: String },
+    fees: { type: String }
 }
 
 export const schema = CustomDocumentBuild(docTX)
 
-schema.statics.addTx = async function (widgetId:String,txHash:String,chainId:String){
-    return await new Promise(async(resolve: any, reject: any)=>{
+schema.statics.addTx = async function (widgetId: String, txHash: String, fromChain: String, toCahin: String, fees: String) {
+    return await new Promise(async (resolve: any, reject: any) => {
         try {
-            
-        let tx = await this.findOne({txHash:txHash,chainId:chainId})
-        console.log(tx)
-        if(tx !== null)
-        {
-            console.log("in 1");
-            resolve(tx)
-        }
-        else{
-            console.log("in 2");
-            resolve(this.create({widgetId:widgetId,txHash:txHash,chainId:chainId}))
-        }
+            let tx = await this.findOne({ txHash })
+            console.log(tx)
+            if (tx !== null) {
+                console.log("in 1");
+                resolve("transaction exist")
+            }
+            else {
+                console.log("in 2");
+                resolve(this.create({ widgetId, txHash, fromChain, toCahin, fees }))
+            }
         } catch (error) {
             reject(error)
         }
