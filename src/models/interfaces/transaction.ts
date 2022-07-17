@@ -5,7 +5,8 @@ export interface ITX {
     txHash: { type: String },
     fromChain: { type: String },
     toCahin: { type: String },
-    fees: { type: String }
+    fees: { type: String },
+    extraFees:{type:String}
 }
 
 // Instance methods
@@ -17,5 +18,5 @@ export interface ITXDocument extends ITX, Document {
 export interface ITXModel extends Model<ITXDocument> {
     //getByURI(uri: string): Promise<IUSERDocument>
     getEditor(editorId: String): Promise<ITXDocument>
-    addTx(widgetId: String, txHash: String, fromChain: String, toCahin: String, fees: String): Promise<ITXDocument | string>
+    addTx(widgetId: String, txHash: String, fromChain: String, toCahin: String, fees: String , extraFees:Number): Promise<ITXDocument | string>
 }
