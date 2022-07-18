@@ -12,14 +12,14 @@ export const addWidget = async (req: any, res: any) => {
     }
 
     const { widget, signature, address } = req.body;
-    const _user = await USER.addUser(signature, address);
+    await USER.addUser(signature, address);
     const _widget = await WIDGET.addWidget(widget);
     const updatedUser = await USER.updateUserWidgetList(address, _widget._id);
 
     if (updatedUser) {
       console.log(updatedUser);
       res.cookie("WIDGET_CRED", JSON.stringify({ signature, address }), {
-        maxAge: 1 * 60000,
+        maxAge: 24 * 60 * 60000,
         httpOnly: true,
       });
       console.log(res.cookies);

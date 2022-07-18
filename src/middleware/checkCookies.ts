@@ -32,7 +32,7 @@ export const checkCookies = async (
 
     if (user?.widgets.includes(req.body.widgetId)) {
       res.cookie("WIDGET_CRED", JSON.stringify({ signature, address }), {
-        maxAge: 10 * 60000,
+        maxAge: 24 * 60 * 60000,
         httpOnly: true,
       });
 
