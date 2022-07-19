@@ -17,12 +17,11 @@ export const addWidget = async (req: any, res: any) => {
     const updatedUser = await USER.updateUserWidgetList(address, _widget._id);
 
     if (updatedUser) {
-      console.log(updatedUser);
-      res.cookie("WIDGET_CRED", JSON.stringify({ signature, address }), {
-        maxAge: 24 * 60 * 60000,
-        httpOnly: true,
-      });
-      console.log(res.cookies);
+      //res.cookie("WIDGET_CRED", JSON.stringify({ signature, address }), {
+      //  maxAge: 24 * 60 * 60000,
+      // httpOnly: true,
+      //});
+
       res.send({ updatedUser: updatedUser, newWidget: _widget });
       return;
     } else {

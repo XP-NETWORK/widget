@@ -11,13 +11,13 @@ export const checkCookies = async (
   res: Response,
   next: NextFunction
 ) => {
-  const cookie = req.cookies["WIDGET_CRED"];
+  /* const cookie = req.cookies["WIDGET_CRED"];
 
   if (!cookie && !req.body.signature) {
     return res.status(403).send("no cookies");
-  }
+  }*/
 
-  const signature = req.body.signature || JSON.parse(cookie).signature;
+  const signature = req.body.signature; //|| JSON.parse(cookie).signature;
 
   if (signature) {
     const address = ethers.utils.verifyMessage(
@@ -31,10 +31,10 @@ export const checkCookies = async (
     });
 
     if (user?.widgets.includes(req.body.widgetId)) {
-      res.cookie("WIDGET_CRED", JSON.stringify({ signature, address }), {
+      /* res.cookie("WIDGET_CRED", JSON.stringify({ signature, address }), {
         maxAge: 24 * 60 * 60000,
         httpOnly: true,
-      });
+      });*/
 
       return next();
     }
